@@ -2,76 +2,50 @@ package model;
 
 import exceptions.IncorrectTypeException;
 import exceptions.InvalidForTheDayException;
-import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 
 class ShopTest {
 
-    @Test
-    public void testCreateUser1() {
-        Shop testShop = new Shop();
+    private String newTypeTest = "";
+    private String newEvenIdTest = "";
+    private String newOddIdTest = "";
+    private final Shop testShop = new Shop();
 
-        String newTypeTest = "CC";
-        String newIdTest = "66806902";
+    //Successful scenario
+    public void setUpScenario1() {
+        newTypeTest = "CC";
+        newOddIdTest = "66806902";
+        newEvenIdTest = "1006011433";
+    }
 
-        try {
-            testShop.createUser(newTypeTest, newIdTest);
-        } catch (IncorrectTypeException typeException) {
-            if (typeException.getMessage().contains("menores")) fail("Underage person. Test failed");
-            else fail("Invalid type. Test failed");
-        } catch (InvalidForTheDayException dayException) {
-            fail("Invalid for the day. Test failed");
-        }
+    //Underage fail
+    public void setUpScenario2() {
+        newTypeTest = "TI";
+        newEvenIdTest = "1006011433";
+        newOddIdTest = "66806902";
+    }
+
+    //Date fail
+    public void setUpScenario3() {
+        newTypeTest = "CC";
+        newOddIdTest = "66806912";
+        newEvenIdTest = "1006011423";
     }
 
     @Test
-    public void testCreateUser2() {
-        Shop testShop = new Shop();
-
-        String newTypeTest = "literallyanythingthatisntincluded";
-        String newIdTest = "1006011433";
-
+    public void testCreateUserOdd() {
         try {
-            testShop.createUser(newTypeTest, newIdTest);
+            if (testShop.getCurrentDay() % 2 == 0)
+            testShop.createUser(newTypeTest, newEvenIdTest);
+            else testShop.createUser(newTypeTest, newOddIdTest);
         } catch (IncorrectTypeException typeException) {
             if (typeException.getMessage().contains("menores")) fail("Underage person. Test failed");
             else fail("Invalid type. Test failed");
         } catch (InvalidForTheDayException dayException) {
             fail("Invalid for the day. Test failed");
-        }
-    }
-
-    @Test
-    public void testCreateUser3() {
-        Shop testShop = new Shop();
-
-        String newTypeTest = "TI";
-        String newIdTest = "1006011433";
-
-        try {
-            testShop.createUser(newTypeTest, newIdTest);
-        } catch (IncorrectTypeException typeException) {
-            if (typeException.getMessage().contains("menores")) fail("Underage person. Test failed");
-            else fail("Invalid type. Test failed");
-        } catch (InvalidForTheDayException dayException) {
-            fail("Invalid for the day. Test failed");
-        }
-    }
-
-    @Test
-    public void testCreateUser4() {
-        Shop testShop = new Shop();
-
-        String newTypeTest = "CC";
-        String newIdTest = "1006011433";
-
-        try {
-            testShop.createUser(newTypeTest, newIdTest);
-        } catch (IncorrectTypeException typeException) {
-            if (typeException.getMessage().contains("menores")) fail("Underage person. Test failed");
-            else fail("Invalid type. Test failed");
-        } catch (InvalidForTheDayException dayException) {
-            fail("Invalid for the day. Test failed");
+        } catch (Exception e) {
+            fail("Something else went wrong");
         }
     }
 }

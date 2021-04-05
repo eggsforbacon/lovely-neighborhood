@@ -55,4 +55,9 @@ public class Shop {
     public int getPeople() {
         return peopleInTheShop.size();
     }
+
+    public int getCurrentDay() {
+        return currentDay;
+    }
+
 }
