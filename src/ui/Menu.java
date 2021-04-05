@@ -1,7 +1,7 @@
 package ui;
 
-import model.IncorrectTypeException;
-import model.InvalidForTheDayException;
+import exceptions.IncorrectTypeException;
+import exceptions.InvalidForTheDayException;
 import model.Shop;
 
 import java.util.Scanner;
