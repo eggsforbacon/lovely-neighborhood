@@ -1,6 +1,6 @@
 package exceptions;
 
-public class IncorrectTypeException extends RuntimeException{
+public class IncorrectTypeException extends Exception{
     public IncorrectTypeException(String errorMessage) {
         super(errorMessage);
     }
