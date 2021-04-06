@@ -1,10 +1,9 @@
 package ui;
 
+import java.util.Scanner;
 import exceptions.IncorrectTypeException;
 import exceptions.InvalidForTheDayException;
 import model.Shop;
-
-import java.util.Scanner;
 
 public class Menu {
     private final int REGISTER_PERSON = 1;

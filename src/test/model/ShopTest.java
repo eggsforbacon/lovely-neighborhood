@@ -34,7 +34,7 @@ class ShopTest {
     }
 
     @Test
-    public void testCreateUserOdd() {
+    public void testCreateUser() {
         try {
             if (testShop.getCurrentDay() % 2 == 0)
             testShop.createUser(newTypeTest, newEvenIdTest);
